@@ -16,6 +16,8 @@ include 'config/app.php';
 
 // Menerima id barang yang dipilih pengguna
 $id_barang = (int)$_GET['id_barang'];
+
+// Eksekusi Fuction delete_barang()
 if (delete_barang($id_barang) > 0) {
     echo "<script>
                 alert('Data Barang berhasil dihapus');

@@ -253,25 +253,26 @@ function update_akun($post)
 }
 
 // Fungsi Menghapus Record barang keluar
-function delete_barangKeluar()
+function delete_barangKeluar($id_keluar)
 {
     global $db;
 
     // Query Menghapus data barang
-    $query = "DELETE FROM barangkeluar ORDER BY id_keluar ASC limit 1";
+    // Query Menghapus data barang
+    $query = "DELETE FROM barangkeluar WHERE id_keluar = $id_keluar";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
 
 // Fungsi Menghapus Record barang masuk
-function delete_barangMasuk()
+function delete_barangMasuk($id_masuk)
 {
     global $db;
 
     // Query Menghapus data barang
-    $query = "DELETE FROM barangmasuk ORDER BY id_masuk ASC limit 1";
-    mysqli_query($db, $query);
+    $query = "DELETE FROM barangmasuk WHERE id_masuk = $id_masuk";
 
+    mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }

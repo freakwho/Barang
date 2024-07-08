@@ -21,11 +21,19 @@ include 'layout/header.php';
 //         document.location.href = 'barang-masuk.php';
 //     </script>";
 
-delete_barangMasuk();
-echo "<script>
-        alert('Report Barang Masuk Berhasil dihapus');
-        document.location.href = 'barang-masuk.php';
-    </script>";
+// Menerima id barang masuk yang dipilih pengguna
+$id_masuk = (int)$_GET['id_masuk'];
+if (delete_barangMasuk($id_masuk) > 0) {
+    echo "<script>
+                alert('Data Barang Masuk berhasil dihapus');
+                document.location.href = 'barang-masuk.php';
+            </script>";
+} else {
+    echo "<script>
+                alert('Data Barang Masuk gagal dihapus');
+                document.location.href = 'barang-masuk.php';
+            </script>";
+}
 
 ?>
 

@@ -121,7 +121,7 @@ $data_barang = select("SELECT * FROM stock ORDER BY id_barang DESC");
                           <td class="text-center" width="27%">
                             <a href="detail-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-info mb-1"><i class="fas fa-info"></i>&nbsp;Detail</a>
                             <a href="change-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-success mb-1"><i class="fas fa-pencil-alt"></i>&nbsp;Change</a>
-                            <a href="delete-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-danger mb-1" onclick="return confirm('yakin ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+                            <a href="delete-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-danger mb-1" onclick="return confirm('Apakah Anda yakin ingin menghapus data barang ini ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
                           </td>
                         </tr>
                       <?php endforeach; ?>

@@ -58,7 +58,8 @@ if (isset($_POST['filter'])) {
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <button type="button" class="btn btn-primary mb-1" data-bs-toggle="modal" data-bs-target="#modalFilter"><i class="fas fa-search" aria-hidden="true"></i>&nbsp;Filter Search By Date</button>
-                                    <a href="delete-barang-keluar.php" class="btn btn-danger mb-1" style="float: right;" onclick="return confirm('Apakah anda yakin ingin menghapus data ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Hapus Data Baris Terakhir</a>
+                                    <a href="download-excel-barang-keluar.php" style="float: right;" class="btn btn-success ml-3 mb-1"><i class="fas fa-file-excel"></i>&nbsp;Download Excel</a>
+                                    <a href="download-pdf-barang-keluar.php" style="float: right;" class="btn btn-warning mb-1"><i class="fas fa-file-pdf"></i>&nbsp;Download PDF</a>
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
@@ -69,6 +70,7 @@ if (isset($_POST['filter'])) {
                                                 <th>Penerima</th>
                                                 <th>Jumlah</th>
                                                 <th>Status</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -82,6 +84,9 @@ if (isset($_POST['filter'])) {
                                                     <td><?= $barang['penerima']; ?></td>
                                                     <td><?= $barang['jumlah']; ?></td>
                                                     <td><?= $barang['status']; ?></td>
+                                                    <td>
+                                                        <a href="delete-barang-keluar.php?id_keluar=<?= $barang['id_keluar']; ?>" class="btn btn-danger mb-1" onclick="return confirm('Apakah Anda yakin ingin menghapus data barang ini ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
