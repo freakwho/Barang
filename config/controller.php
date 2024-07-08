@@ -258,7 +258,7 @@ function delete_barangKeluar()
     global $db;
 
     // Query Menghapus data barang
-    $query = "DELETE FROM barangkeluar ORDER BY id_keluar ASC limit 2";
+    $query = "DELETE FROM barangkeluar ORDER BY id_keluar ASC limit 1";
 
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
@@ -270,7 +270,7 @@ function delete_barangMasuk()
     global $db;
 
     // Query Menghapus data barang
-    $query = "DELETE FROM barangmasuk ORDER BY id_masuk ASC limit 2";
+    $query = "DELETE FROM barangmasuk ORDER BY id_masuk ASC limit 1";
     mysqli_query($db, $query);
 
     return mysqli_affected_rows($db);

@@ -49,7 +49,7 @@ $barang = select("SELECT * FROM stock WHERE id_barang = $id_barang")[0];
         </div>
         <div class="mb-3">
             <label for="alamat" class="form-label">Deskripsi</label>
-            <textarea name="deskripsi" id="alamat"></textarea>
+            <textarea name="deskripsi" id="alamat"><?= $barang['deskripsi']; ?></textarea>
         </div>
         <div class="mb-3">
             <label for="harga" class="form-label">Harga Barang per Unit</label>
