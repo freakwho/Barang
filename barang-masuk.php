@@ -82,7 +82,8 @@ if (isset($_POST['filter'])) {
                                                     <td><?= $barang['jumlah']; ?></td>
                                                     <td><?= $barang['status']; ?></td>
                                                     <td>
-                                                        <a href="delete-barang-masuk.php?id_masuk=<?= $barang['id_masuk']; ?>" class="btn btn-danger mb-1" onclick="return confirm('Apakah Anda yakin ingin menghapus data barang ini ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete</a>
+                                                        <a href="delete-barang-masuk.php?id_masuk=<?= $barang['id_masuk']; ?>" class="btn btn-danger mb-1" onclick="return confirm('Apakah Anda yakin ingin mengHapus data barang ini ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Delete Report</a>
+                                                        <a href="cancel-barang-masuk.php?id_masuk=<?= $barang['id_masuk']; ?>" class="btn btn-danger mb-1" onclick="return confirm('Apakah Anda yakin ingin mengCancel barang ini ?');"><i class="fa fa-trash" aria-hidden="true"></i>&nbsp;Cancel Action</a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>

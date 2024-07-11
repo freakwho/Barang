@@ -276,3 +276,62 @@ function delete_barangMasuk($id_masuk)
     mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
+
+// Fungsi Membatalkan Aksi barang masuk
+function cancel_barangMasuk($id_masuk)
+{
+    global $db;
+
+    $cekid_masuk = mysqli_query($db, "select * from barangmasuk where id_masuk='$id_masuk'");
+    $ambildata = mysqli_fetch_array($cekid_masuk);
+
+    $id_barang = $ambildata['id_barang'];
+    $jumlahMasuk = $ambildata['jumlah'];
+
+    $cekid_barang = mysqli_query($db, "select * from stock where id_barang='$id_barang'");
+    $ambilStock = mysqli_fetch_array($cekid_barang);
+
+    $stockSekar = $ambilStock['stock'];
+
+    $kurangStock = $stockSekar - $jumlahMasuk;
+
+    // Query Mengupdate stock barang setelah barang masuk di Cancel
+    $updatestock = "UPDATE stock SET stock='$kurangStock' WHERE id_barang='$id_barang'";
+    mysqli_query($db, $updatestock);
+
+
+    // Query Menghapus data barang masuk
+    $query = "DELETE FROM barangmasuk WHERE id_masuk = $id_masuk";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
+
+// Fungsi Membatalkan Aksi barang keluar
+function cancel_barangKeluar($id_keluar)
+{
+    global $db;
+
+    $cekid_keluar = mysqli_query($db, "select * from barangkeluar where id_keluar='$id_keluar'");
+    $ambildata = mysqli_fetch_array($cekid_keluar);
+
+    $id_barang = $ambildata['id_barang'];
+    $jumlahKeluar = $ambildata['jumlah'];
+
+    $cekid_barang = mysqli_query($db, "select * from stock where id_barang='$id_barang'");
+    $ambilStock = mysqli_fetch_array($cekid_barang);
+
+    $stockSekar = $ambilStock['stock'];
+    $tambahStock = $stockSekar + $jumlahKeluar;
+
+    // Query Mengupdate stock barang setelah barang keluar di Cancel
+    $updatestock = "UPDATE stock SET stock='$tambahStock' WHERE id_barang='$id_barang'";
+    mysqli_query($db, $updatestock);
+
+
+    // Query Menghapus data barang masuk
+    $query = "DELETE FROM barangkeluar WHERE id_keluar = $id_keluar";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+}
