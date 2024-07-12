@@ -22,15 +22,15 @@ include 'layout/header.php';
 //     </script>";
 
 // Menerima id barang masuk yang dipilih pengguna
-$id_keluar = (int)$_GET['id_keluar'];
-if (cancel_barangKeluar($id_keluar) > 0) {
+$id_cancel = (int)$_GET['id_cancel'];
+if (delete_barangCancel($id_cancel) > 0) {
     echo "<script>
-                alert('Barang Keluar berhasil diCancel');
+                alert('Data Barang Cancel berhasil dihapus');
                 document.location.href = 'barang-cancel.php';
             </script>";
 } else {
     echo "<script>
-                alert('Barang Keluar gagal diCancel');
+                alert('Data Barang Cancel gagal dihapus');
                 document.location.href = 'barang-cancel.php';
             </script>";
 }

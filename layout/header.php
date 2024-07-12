@@ -139,7 +139,7 @@ include 'config/app.php';
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="cancel.php" class="nav-link">
+                            <a href="barang-cancel.php" class="nav-link">
                                 <i class="nav-icon fa fa-users"></i>
                                 <p>
                                     Cancel Report

@@ -286,7 +286,12 @@ function cancel_barangMasuk($id_masuk)
     $ambildata = mysqli_fetch_array($cekid_masuk);
 
     $id_barang = $ambildata['id_barang'];
+    $nama_barang = $ambildata['nama_barang'];
     $jumlahMasuk = $ambildata['jumlah'];
+    $pengirim = $ambildata['pengirim'];
+    $penerima = "-";
+    $status = "Ditolak";
+
 
     $cekid_barang = mysqli_query($db, "select * from stock where id_barang='$id_barang'");
     $ambilStock = mysqli_fetch_array($cekid_barang);
@@ -299,6 +304,9 @@ function cancel_barangMasuk($id_masuk)
     $updatestock = "UPDATE stock SET stock='$kurangStock' WHERE id_barang='$id_barang'";
     mysqli_query($db, $updatestock);
 
+    // Query Tambah Data ke Tabel barangcancel
+    $quero = "INSERT INTO barangcancel VALUES(null, '$id_barang', '$nama_barang', CURRENT_TIMESTAMP(), '$penerima', '$pengirim', '$jumlahMasuk', '$status')";
+    mysqli_query($db, $quero);
 
     // Query Menghapus data barang masuk
     $query = "DELETE FROM barangmasuk WHERE id_masuk = $id_masuk";
@@ -316,7 +324,11 @@ function cancel_barangKeluar($id_keluar)
     $ambildata = mysqli_fetch_array($cekid_keluar);
 
     $id_barang = $ambildata['id_barang'];
+    $nama_barang = $ambildata['nama_barang'];
+    $penerima = $ambildata['penerima'];
     $jumlahKeluar = $ambildata['jumlah'];
+    $pengirim = "-";
+    $status = "Retur";
 
     $cekid_barang = mysqli_query($db, "select * from stock where id_barang='$id_barang'");
     $ambilStock = mysqli_fetch_array($cekid_barang);
@@ -328,10 +340,25 @@ function cancel_barangKeluar($id_keluar)
     $updatestock = "UPDATE stock SET stock='$tambahStock' WHERE id_barang='$id_barang'";
     mysqli_query($db, $updatestock);
 
+    // Query Tambah Data ke Tabel barangcancel
+    $quero = "INSERT INTO barangcancel VALUES(null, '$id_barang', '$nama_barang', CURRENT_TIMESTAMP(), '$penerima', '$pengirim', '$jumlahKeluar', '$status')";
+    mysqli_query($db, $quero);
 
     // Query Menghapus data barang masuk
     $query = "DELETE FROM barangkeluar WHERE id_keluar = $id_keluar";
     mysqli_query($db, $query);
 
+    return mysqli_affected_rows($db);
+}
+
+// Fungsi Menghapus Record barang cancel
+function delete_barangCancel($id_cancel)
+{
+    global $db;
+
+    // Query Menghapus data barang
+    $query = "DELETE FROM barangcancel WHERE id_cancel = $id_cancel";
+
+    mysqli_query($db, $query);
     return mysqli_affected_rows($db);
 }
